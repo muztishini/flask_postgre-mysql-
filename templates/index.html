@@ -6,11 +6,28 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello!!!</h1>
-
-    <p>Name : {{ cities }}</p>
-    {% for city in cities %}
-        <p>{{city[0]}}</p>
-    {% endfor %}
+    <form action="create/" method="post">
+        
+        <p>
+            <label>Введите имя</label><br>
+            <input type="text" name="name">
+        </p>
+        
+        <input type="submit" value="Сохранить">
+    </form>
+    {% if people | length > 0 %}
+    <h2>Список пользователей</h2>
+    <table>
+        <thead><th>Id</th><th>Имя</th><th></th></thead>
+        {% for person in people %}
+        <tr>
+            <td>{{person.id}}</td>
+            <td>{{person.name}}</td>
+            
+            <td><a href="edit/{{person.id}}">Изменить</a> | <a href="delete/{{person.id}}">Удалить</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
 </body>
 </html>
